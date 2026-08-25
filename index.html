@@ -3,95 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YoniRtx72 | Puzzle Escape</title>
+<title>YoniRtx72 Puzzle Escape</title>
 
 <style>
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
     min-height:100vh;
-    background:
-        radial-gradient(circle at top,#18213b 0%,#080b15 45%,#030409 100%);
+    font-family:Arial,sans-serif;
     color:white;
-    overflow-x:hidden;
+    background:
+        radial-gradient(circle at top,#18294a,#070b14 55%,#020308);
 }
 
 button,input{
     font:inherit;
 }
 
-.screen{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
 .hidden{
     display:none!important;
 }
 
-/* INICIO */
+/* MENÚ */
 
 #menu{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
+    padding:20px;
+}
+
+.menu-box{
+    width:100%;
+    max-width:600px;
 }
 
 .logo{
-    font-size:clamp(40px,10vw,75px);
+    font-size:clamp(42px,12vw,78px);
     font-weight:900;
-    letter-spacing:4px;
     color:#67e8f9;
+    letter-spacing:4px;
     text-shadow:
         0 0 10px #22d3ee,
-        0 0 30px #0891b2;
+        0 0 35px #0891b2;
 }
 
-.subtitle{
-    color:#aab4cc;
-    margin:10px 0 35px;
-    font-size:16px;
+.menu-title{
+    font-size:22px;
+    margin:15px 0;
 }
 
-.start-btn{
+.menu-description{
+    color:#94a3b8;
+    line-height:1.6;
+    margin-bottom:35px;
+}
+
+.start{
     border:0;
+    padding:17px 42px;
     border-radius:14px;
-    padding:17px 45px;
     color:white;
     background:linear-gradient(135deg,#06b6d4,#2563eb);
-    box-shadow:0 0 25px #0891b288;
-    cursor:pointer;
+    box-shadow:0 0 30px #0891b277;
+    font-size:20px;
     font-weight:bold;
-    font-size:19px;
+    cursor:pointer;
     transition:.2s;
 }
 
-.start-btn:hover{
-    transform:scale(1.05);
+.start:hover{
+    transform:scale(1.06);
 }
 
-.info{
-    margin-top:25px;
-    color:#74809b;
-    font-size:13px;
+.start:active{
+    transform:scale(.96);
 }
 
 /* JUEGO */
 
 #game{
     width:100%;
-    max-width:850px;
+    max-width:900px;
     margin:auto;
     padding:15px;
 }
 
-.topbar{
+.top{
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -107,124 +111,143 @@ button,input{
 
 .stats{
     display:flex;
-    gap:12px;
-    color:#cbd5e1;
-    font-size:14px;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
 .stat{
-    background:#101625;
-    border:1px solid #26334d;
-    border-radius:10px;
+    background:#101827;
+    border:1px solid #26364f;
     padding:8px 11px;
+    border-radius:9px;
+    color:#cbd5e1;
 }
 
 .card{
-    background:rgba(10,15,27,.94);
-    border:1px solid #26334d;
+    background:rgba(7,12,24,.95);
+    border:1px solid #26364f;
     border-radius:20px;
     padding:25px;
-    box-shadow:0 20px 60px #0008;
+    box-shadow:0 20px 70px #0009;
 }
 
-.level-title{
+.level{
     color:#67e8f9;
-    margin-bottom:7px;
-}
-
-.description{
-    color:#aab4cc;
-    line-height:1.5;
-    margin-bottom:20px;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
 .progress{
     width:100%;
     height:7px;
-    background:#151c2d;
+    background:#172033;
     border-radius:10px;
     overflow:hidden;
     margin-bottom:22px;
 }
 
 .progress-bar{
+    width:10%;
     height:100%;
     background:linear-gradient(90deg,#06b6d4,#6366f1);
-    transition:.4s;
+    transition:.5s;
+}
+
+h2{
+    margin-bottom:10px;
+}
+
+.description{
+    color:#aab5ca;
+    line-height:1.5;
+    margin-bottom:22px;
 }
 
 .puzzle{
     min-height:250px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.message{
-    min-height:25px;
+.center{
     text-align:center;
-    margin:15px 0;
-    font-weight:bold;
-}
-
-.success{
-    color:#4ade80;
-}
-
-.error{
-    color:#fb7185;
-}
-
-button.option,
-.action{
-    border:1px solid #334155;
-    background:#111827;
-    color:white;
-    padding:13px 16px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-button.option:hover,
-.action:hover{
-    background:#1e293b;
-    border-color:#22d3ee;
-    transform:translateY(-2px);
-}
-
-.options{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-    gap:12px;
+    width:100%;
 }
 
 input{
-    width:100%;
-    max-width:350px;
     display:block;
-    margin:12px auto;
+    width:min(100%,350px);
+    margin:15px auto;
     padding:14px;
     border-radius:10px;
     border:1px solid #334155;
     background:#080d18;
     color:white;
-    outline:none;
     text-align:center;
+    outline:none;
 }
 
 input:focus{
     border-color:#22d3ee;
-    box-shadow:0 0 15px #22d3ee44;
+    box-shadow:0 0 15px #22d3ee55;
 }
 
-.center{
+.action,
+.option{
+    border:1px solid #334155;
+    background:#111827;
+    color:white;
+    border-radius:10px;
+    padding:13px 18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.action:hover,
+.option:hover{
+    border-color:#22d3ee;
+    background:#172235;
+    transform:translateY(-2px);
+}
+
+.options{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.message{
+    min-height:25px;
+    margin:15px 0;
+    text-align:center;
+    font-weight:bold;
+}
+
+.correct{
+    color:#4ade80;
+}
+
+.wrong{
+    color:#fb7185;
+}
+
+.hint{
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    background:#171f30;
+    color:#facc15;
     text-align:center;
 }
 
-.sequence{
+.symbols{
     display:flex;
     justify-content:center;
-    gap:12px;
+    gap:10px;
     flex-wrap:wrap;
-    margin:25px 0;
+    margin-bottom:20px;
 }
 
 .symbol{
@@ -234,86 +257,63 @@ input:focus{
     align-items:center;
     justify-content:center;
     border-radius:12px;
-    background:#172033;
+    background:#141e30;
     border:1px solid #334155;
-    font-size:25px;
+    font-size:24px;
 }
 
-.memory-grid{
+/* MEMORIA */
+
+.memory{
     display:grid;
     grid-template-columns:repeat(4,60px);
     gap:10px;
     justify-content:center;
-    margin:25px auto;
 }
 
-.memory-cell{
+.cell{
     width:60px;
     height:60px;
-    background:#111827;
+    border-radius:10px;
+    background:#101827;
     border:1px solid #334155;
-    border-radius:10px;
     cursor:pointer;
+    transition:.15s;
 }
 
-.memory-cell.active{
+.cell.active{
     background:#22d3ee;
-    box-shadow:0 0 20px #22d3ee;
+    box-shadow:0 0 25px #22d3ee;
 }
 
-.memory-cell.selected{
+.cell.selected{
     background:#6366f1;
-}
-
-.code-box{
-    letter-spacing:7px;
-    font-size:25px;
-}
-
-.clues{
-    display:grid;
-    gap:8px;
-    margin:15px 0;
-}
-
-.clue{
-    background:#0d1422;
-    padding:11px;
-    border-radius:9px;
-    border-left:3px solid #22d3ee;
-    color:#cbd5e1;
-}
-
-.hint{
-    margin-top:15px;
-    padding:12px;
-    border-radius:10px;
-    background:#172033;
-    color:#facc15;
-    text-align:center;
-}
-
-.bottom{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:20px;
 }
 
 /* FINAL */
 
-.final-title{
-    font-size:45px;
-    color:#4ade80;
-    text-shadow:0 0 25px #22c55e;
+#final{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
 }
 
-.big-score{
-    font-size:28px;
-    margin:20px 0;
-    color:#67e8f9;
+.win{
+    font-size:clamp(40px,10vw,70px);
+    color:#4ade80;
+    text-shadow:0 0 30px #22c55e;
 }
+
+.score{
+    color:#67e8f9;
+    font-size:28px;
+    margin:20px;
+}
+
+/* ANIMACIONES */
 
 .shake{
     animation:shake .35s;
@@ -326,15 +326,20 @@ input:focus{
 }
 
 @media(max-width:500px){
+
     .card{
         padding:18px;
     }
 
-    .memory-grid{
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .memory{
         grid-template-columns:repeat(4,52px);
     }
 
-    .memory-cell{
+    .cell{
         width:52px;
         height:52px;
     }
@@ -344,43 +349,65 @@ input:focus{
 
 <body>
 
-<!-- MENU -->
+<!-- ================= MENU ================= -->
 
-<section id="menu" class="screen">
-    <div>
+<section id="menu">
+
+    <div class="menu-box">
+
         <div class="logo">YoniRtx72</div>
-        <div class="subtitle">
-            🧩 PUZZLE ESCAPE<br>
-            10 niveles • 1 escape • 1 nivel ULTRA EXTREMO
+
+        <div class="menu-title">
+            🧩 PUZZLE ESCAPE
         </div>
 
-        <button class="start-btn" onclick="startGame()">
+        <div class="menu-description">
+            10 niveles.<br>
+            3 vidas.<br>
+            Una última prueba ULTRA EXTREMA. ☠️
+        </div>
+
+        <button class="start" id="startButton">
             ▶ INICIAR JUEGO
         </button>
 
-        <div class="info">
-            ¿Tienes lo necesario para llegar al nivel 10?
-        </div>
     </div>
+
 </section>
 
-<!-- JUEGO -->
+
+<!-- ================= JUEGO ================= -->
 
 <section id="game" class="hidden">
 
-    <div class="topbar">
-        <div class="player">👤 YoniRtx72</div>
+    <div class="top">
+
+        <div class="player">
+            👤 YoniRtx72
+        </div>
 
         <div class="stats">
-            <div class="stat">❤️ <span id="lives">3</span></div>
-            <div class="stat">⭐ <span id="score">0</span></div>
-            <div class="stat">⏱️ <span id="timer">00:00</span></div>
+
+            <div class="stat">
+                ❤️ <span id="lives">3</span>
+            </div>
+
+            <div class="stat">
+                ⭐ <span id="score">0</span>
+            </div>
+
+            <div class="stat">
+                ⏱️ <span id="timer">00:00</span>
+            </div>
+
         </div>
+
     </div>
+
 
     <div class="card">
 
-        <div class="level-title">
+        <div class="level">
             NIVEL <span id="levelNumber">1</span> / 10
         </div>
 
@@ -396,43 +423,748 @@ input:focus{
 
         <div id="message" class="message"></div>
 
-        <div class="bottom">
-            <button class="action" onclick="showHint()">💡 PISTA</button>
+        <div style="text-align:center">
+
+            <button class="action" id="hintButton">
+                💡 PISTA
+            </button>
+
         </div>
 
         <div id="hint" class="hint hidden"></div>
 
     </div>
+
 </section>
 
-<!-- FINAL -->
 
-<section id="final" class="screen hidden">
-    <div class="center">
-        <div class="final-title">🎉 ESCAPASTE</div>
+<!-- ================= FINAL ================= -->
 
-        <p style="margin-top:15px;color:#aab4cc">
+<section id="final" class="hidden">
+
+    <div>
+
+        <div class="win">
+            🎉 ¡ESCAPASTE!
+        </div>
+
+        <p style="color:#94a3b8;margin-top:15px">
             YoniRtx72 ha superado los 10 niveles.
         </p>
 
-        <div class="big-score">
-            Puntuación: <span id="finalScore">0</span>
+        <div class="score">
+            ⭐ <span id="finalScore">0</span>
         </div>
 
-        <div>
+        <p>
             Tiempo: <span id="finalTime">00:00</span>
-        </div>
+        </p>
 
         <br>
 
-        <button class="start-btn" onclick="location.reload()">
+        <button class="start" onclick="location.reload()">
             🔄 JUGAR DE NUEVO
         </button>
+
     </div>
+
 </section>
+
 
 <script>
 
-let level = 1;
-let lives = 3;
-let score = 0;
+/* =========================================================
+   SONIDOS
+========================================================= */
+
+let audioContext=null;
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext=
+            new (window.AudioContext ||
+            window.webkitAudioContext)();
+
+    }
+
+    if(audioContext.state==="suspended"){
+        audioContext.resume();
+    }
+}
+
+function sound(frequency,duration,type="sine",volume=.08){
+
+    if(!audioContext)return;
+
+    const oscillator=
+        audioContext.createOscillator();
+
+    const gain=
+        audioContext.createGain();
+
+    oscillator.type=type;
+
+    oscillator.frequency.value=frequency;
+
+    gain.gain.setValueAtTime(
+        volume,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        audioContext.currentTime+duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime+duration
+    );
+}
+
+function clickSound(){
+    sound(500,.08,"square",.04);
+}
+
+function correctSound(){
+
+    sound(523,.12);
+    setTimeout(()=>sound(659,.12),100);
+    setTimeout(()=>sound(784,.18),200);
+
+}
+
+function wrongSound(){
+
+    sound(180,.18,"sawtooth",.07);
+    setTimeout(()=>sound(120,.2,"sawtooth",.05),120);
+
+}
+
+function levelSound(){
+
+    sound(440,.1);
+    setTimeout(()=>sound(660,.1),100);
+    setTimeout(()=>sound(880,.2),200);
+
+}
+
+function winSound(){
+
+    const notes=[
+        523,659,784,1046,1318
+    ];
+
+    notes.forEach((n,i)=>{
+        setTimeout(()=>{
+            sound(n,.25);
+        },i*120);
+    });
+}
+
+
+/* =========================================================
+   DATOS
+========================================================= */
+
+const levels=[
+
+{
+ title:"La primera cerradura",
+ description:"Descubre la combinación siguiendo el orden de las pistas.",
+ hint:"⭐ = 7   🔺 = 3   🔵 = 2",
+ type:"code",
+ answer:"732"
+},
+
+{
+ title:"La secuencia",
+ description:"¿Qué símbolo continúa la secuencia?",
+ hint:"La secuencia alterna entre dos símbolos.",
+ type:"choice",
+ answer:"🔺",
+ options:["🔺","⭐","🔵","🟢"]
+},
+
+{
+ title:"El código escondido",
+ description:"Ordena correctamente los números encontrados.",
+ hint:"Primero va el menor, después el mayor y finalmente el restante.",
+ type:"code",
+ answer:"284"
+},
+
+{
+ title:"Memoria",
+ description:"Memoriza los cuadros iluminados y repite el patrón.",
+ hint:"El orden importa.",
+ type:"memory"
+},
+
+{
+ title:"La puerta numérica",
+ description:"Resuelve la operación.",
+ hint:"6 × 4 + 2",
+ type:"code",
+ answer:"26"
+},
+
+{
+ title:"Los símbolos antiguos",
+ description:"Los símbolos tienen valores diferentes. Elige el correcto.",
+ hint:"⭐=1  🔺=2  🔵=3  🟢=4",
+ type:"choice",
+ answer:"🔵",
+ options:["⭐","🔺","🔵","🟢"]
+},
+
+{
+ title:"Las tres puertas",
+ description:"Solo una puerta puede ser la correcta.",
+ hint:"Analiza las afirmaciones cuidadosamente.",
+ type:"choice",
+ answer:"2",
+ options:["1","2","3"]
+},
+
+{
+ title:"El código imposible",
+ description:"Encuentra el siguiente número: 2, 6, 12, 20, 30, ?",
+ hint:"Observa cuánto aumenta cada término.",
+ type:"code",
+ answer:"42"
+},
+
+{
+ title:"La última prueba",
+ description:"Encuentra los tres números utilizando las pistas.",
+ hint:"3×4   |   5+7   |   20−6",
+ type:"code",
+ answer:"121214"
+},
+
+{
+ title:"☠️ ULTRA EXTREMO",
+ description:
+ "Has llegado al último nivel. La respuesta está escondida en la secuencia.",
+ hint:
+ "1, 11, 21, 1211, 111221, ? — describe lo que ves.",
+ type:"code",
+ answer:"312211"
+}
+
+];
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentLevel=0;
+let lives=3;
+let score=0;
+let seconds=0;
+let timer=null;
+
+let memorySequence=[];
+let memorySelected=[];
+let memoryEnabled=false;
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const menu=document.getElementById("menu");
+const game=document.getElementById("game");
+const finalScreen=document.getElementById("final");
+
+const startButton=
+    document.getElementById("startButton");
+
+const hintButton=
+    document.getElementById("hintButton");
+
+
+/* =========================================================
+   INICIAR
+========================================================= */
+
+startButton.addEventListener("click",()=>{
+
+    initAudio();
+
+    clickSound();
+
+    menu.classList.add("hidden");
+
+    game.classList.remove("hidden");
+
+    currentLevel=0;
+    lives=3;
+    score=0;
+    seconds=0;
+
+    updateStats();
+
+    loadLevel();
+
+    timer=setInterval(()=>{
+
+        seconds++;
+
+        updateStats();
+
+    },1000);
+
+});
+
+
+/* =========================================================
+   ESTADÍSTICAS
+========================================================= */
+
+function updateStats(){
+
+    document.getElementById("lives").textContent=lives;
+
+    document.getElementById("score").textContent=score;
+
+    const minutes=
+        Math.floor(seconds/60);
+
+    const secs=
+        seconds%60;
+
+    document.getElementById("timer").textContent=
+        String(minutes).padStart(2,"0")+
+        ":"+
+        String(secs).padStart(2,"0");
+
+}
+
+
+/* =========================================================
+   CARGAR NIVEL
+========================================================= */
+
+function loadLevel(){
+
+    const data=levels[currentLevel];
+
+    document.getElementById("levelNumber")
+        .textContent=currentLevel+1;
+
+    document.getElementById("title")
+        .textContent=data.title;
+
+    document.getElementById("description")
+        .textContent=data.description;
+
+    document.getElementById("progressBar")
+        .style.width=
+        ((currentLevel+1)/10*100)+"%";
+
+    document.getElementById("message")
+        .textContent="";
+
+    document.getElementById("hint")
+        .textContent=data.hint;
+
+    document.getElementById("hint")
+        .classList.add("hidden");
+
+    const puzzle=
+        document.getElementById("puzzle");
+
+    puzzle.innerHTML="";
+
+    if(data.type==="code"){
+
+        puzzle.innerHTML=`
+
+        <div class="center">
+
+            <div class="symbols">
+                <div class="symbol">🔒</div>
+                <div class="symbol">🔒</div>
+                <div class="symbol">🔒</div>
+            </div>
+
+            <input
+                id="answer"
+                placeholder="Introduce la clave"
+                autocomplete="off"
+            >
+
+            <button class="action" id="submit">
+                🔓 DESBLOQUEAR
+            </button>
+
+        </div>`;
+
+        document.getElementById("submit")
+            .addEventListener("click",checkAnswer);
+
+    }
+
+
+    if(data.type==="choice"){
+
+        puzzle.innerHTML=`
+
+        <div class="options">
+
+            ${data.options.map(option=>`
+
+                <button class="option choice">
+                    ${option}
+                </button>
+
+            `).join("")}
+
+        </div>`;
+
+        document.querySelectorAll(".choice")
+            .forEach(button=>{
+
+                button.addEventListener("click",()=>{
+
+                    initAudio();
+                    clickSound();
+
+                    checkChoice(
+                        button.textContent.trim()
+                    );
+
+                });
+
+            });
+
+    }
+
+
+    if(data.type==="memory"){
+
+        createMemory();
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPUESTA
+========================================================= */
+
+function checkAnswer(){
+
+    initAudio();
+
+    clickSound();
+
+    const input=document.getElementById("answer");
+
+    if(!input)return;
+
+    const answer=
+        input.value.trim();
+
+    if(answer===levels[currentLevel].answer){
+
+        correct();
+
+    }else{
+
+        incorrect();
+
+    }
+
+}
+
+
+/* =========================================================
+   OPCIONES
+========================================================= */
+
+function checkChoice(value){
+
+    if(value===levels[currentLevel].answer){
+
+        correct();
+
+    }else{
+
+        incorrect();
+
+    }
+
+}
+
+
+/* =========================================================
+   CORRECTO
+========================================================= */
+
+function correct(){
+
+    correctSound();
+
+    score+=100*(currentLevel+1);
+
+    updateStats();
+
+    const message=
+        document.getElementById("message");
+
+    message.textContent=
+        "✓ ¡CORRECTO!";
+
+    message.className=
+        "message correct";
+
+    setTimeout(()=>{
+
+        if(currentLevel===9){
+
+            finish();
+
+        }else{
+
+            currentLevel++;
+
+            levelSound();
+
+            loadLevel();
+
+        }
+
+    },1000);
+
+}
+
+
+/* =========================================================
+   INCORRECTO
+========================================================= */
+
+function incorrect(){
+
+    wrongSound();
+
+    lives--;
+
+    updateStats();
+
+    const card=
+        document.querySelector(".card");
+
+    card.classList.remove("shake");
+
+    void card.offsetWidth;
+
+    card.classList.add("shake");
+
+    const message=
+        document.getElementById("message");
+
+    message.textContent=
+        "✗ Incorrecto. Perdiste una vida.";
+
+    message.className=
+        "message wrong";
+
+    if(lives<=0){
+
+        setTimeout(gameOver,700);
+
+    }
+
+}
+
+
+/* =========================================================
+   PISTA
+========================================================= */
+
+hintButton.addEventListener("click",()=>{
+
+    initAudio();
+
+    clickSound();
+
+    document.getElementById("hint")
+        .classList.toggle("hidden");
+
+});
+
+
+/* =========================================================
+   MEMORIA
+========================================================= */
+
+function createMemory(){
+
+    const puzzle=
+        document.getElementById("puzzle");
+
+    memorySequence=[];
+    memorySelected=[];
+    memoryEnabled=false;
+
+    while(memorySequence.length<4){
+
+        const n=
+            Math.floor(Math.random()*16);
+
+        if(!memorySequence.includes(n)){
+            memorySequence.push(n);
+        }
+
+    }
+
+    puzzle.innerHTML=`
+
+        <div class="center">
+
+            <p style="color:#94a3b8;margin-bottom:15px">
+                Memoriza el patrón...
+            </p>
+
+            <div class="memory">
+
+                ${Array.from(
+                    {length:16},
+                    (_,i)=>
+                    `<div class="cell" id="cell-${i}"></div>`
+                ).join("")}
+
+            </div>
+
+        </div>`;
+
+    let index=0;
+
+    const interval=setInterval(()=>{
+
+        if(index>0){
+
+            document.getElementById(
+                "cell-"+memorySequence[index-1]
+            ).classList.remove("active");
+
+        }
+
+        if(index<memorySequence.length){
+
+            document.getElementById(
+                "cell-"+memorySequence[index]
+            ).classList.add("active");
+
+            index++;
+
+        }else{
+
+            clearInterval(interval);
+
+            setTimeout(()=>{
+
+                memoryEnabled=true;
+
+                enableMemory();
+
+            },500);
+
+        }
+
+    },650);
+
+}
+
+
+function enableMemory(){
+
+    for(let i=0;i<16;i++){
+
+        const cell=
+            document.getElementById("cell-"+i);
+
+        cell.addEventListener("click",()=>{
+
+            if(!memoryEnabled)return;
+
+            initAudio();
+
+            clickSound();
+
+            if(memorySelected.includes(i))
+                return;
+
+            memorySelected.push(i);
+
+            cell.classList.add("selected");
+
+            const index=
+                memorySelected.length-1;
+
+            if(i!==memorySequence[index]){
+
+                memoryEnabled=false;
+
+                incorrect();
+
+                return;
+
+            }
+
+            if(memorySelected.length===
+                memorySequence.length){
+
+                memoryEnabled=false;
+
+                correct();
+
+            }
+
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+function gameOver(){
+
+    clearInterval(timer);
+
+    game.innerHTML=`
+
+        <div style="
+            min-height:90vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+        ">
+
+            <div>
+
+                <div style="font-size:65px">
+                    💀
+                </div>
+
+                <h1 style="color:#fb7185">
+                    GAME OVER
+                </h1>
+
+   
