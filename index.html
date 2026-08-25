@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YoniRtx72 | Puzzle Escape</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top,#18213b 0%,#080b15 45%,#030409 100%);
+    color:white;
+    overflow-x:hidden;
+}
+
+button,input{
+    font:inherit;
+}
+
+.screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* INICIO */
+
+#menu{
+    text-align:center;
+}
+
+.logo{
+    font-size:clamp(40px,10vw,75px);
+    font-weight:900;
+    letter-spacing:4px;
+    color:#67e8f9;
+    text-shadow:
+        0 0 10px #22d3ee,
+        0 0 30px #0891b2;
+}
+
+.subtitle{
+    color:#aab4cc;
+    margin:10px 0 35px;
+    font-size:16px;
+}
+
+.start-btn{
+    border:0;
+    border-radius:14px;
+    padding:17px 45px;
+    color:white;
+    background:linear-gradient(135deg,#06b6d4,#2563eb);
+    box-shadow:0 0 25px #0891b288;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:19px;
+    transition:.2s;
+}
+
+.start-btn:hover{
+    transform:scale(1.05);
+}
+
+.info{
+    margin-top:25px;
+    color:#74809b;
+    font-size:13px;
+}
+
+/* JUEGO */
+
+#game{
+    width:100%;
+    max-width:850px;
+    margin:auto;
+    padding:15px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.player{
+    color:#67e8f9;
+    font-weight:bold;
+}
+
+.stats{
+    display:flex;
+    gap:12px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.stat{
+    background:#101625;
+    border:1px solid #26334d;
+    border-radius:10px;
+    padding:8px 11px;
+}
+
+.card{
+    background:rgba(10,15,27,.94);
+    border:1px solid #26334d;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 20px 60px #0008;
+}
+
+.level-title{
+    color:#67e8f9;
+    margin-bottom:7px;
+}
+
+.description{
+    color:#aab4cc;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.progress{
+    width:100%;
+    height:7px;
+    background:#151c2d;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:22px;
+}
+
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,#06b6d4,#6366f1);
+    transition:.4s;
+}
+
+.puzzle{
+    min-height:250px;
+}
+
+.message{
+    min-height:25px;
+    text-align:center;
+    margin:15px 0;
+    font-weight:bold;
+}
+
+.success{
+    color:#4ade80;
+}
+
+.error{
+    color:#fb7185;
+}
+
+button.option,
+.action{
+    border:1px solid #334155;
+    background:#111827;
+    color:white;
+    padding:13px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button.option:hover,
+.action:hover{
+    background:#1e293b;
+    border-color:#22d3ee;
+    transform:translateY(-2px);
+}
+
+.options{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:12px;
+}
+
+input{
+    width:100%;
+    max-width:350px;
+    display:block;
+    margin:12px auto;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #334155;
+    background:#080d18;
+    color:white;
+    outline:none;
+    text-align:center;
+}
+
+input:focus{
+    border-color:#22d3ee;
+    box-shadow:0 0 15px #22d3ee44;
+}
+
+.center{
+    text-align:center;
+}
+
+.sequence{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:25px 0;
+}
+
+.symbol{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:#172033;
+    border:1px solid #334155;
+    font-size:25px;
+}
+
+.memory-grid{
+    display:grid;
+    grid-template-columns:repeat(4,60px);
+    gap:10px;
+    justify-content:center;
+    margin:25px auto;
+}
+
+.memory-cell{
+    width:60px;
+    height:60px;
+    background:#111827;
+    border:1px solid #334155;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.memory-cell.active{
+    background:#22d3ee;
+    box-shadow:0 0 20px #22d3ee;
+}
+
+.memory-cell.selected{
+    background:#6366f1;
+}
+
+.code-box{
+    letter-spacing:7px;
+    font-size:25px;
+}
+
+.clues{
+    display:grid;
+    gap:8px;
+    margin:15px 0;
+}
+
+.clue{
+    background:#0d1422;
+    padding:11px;
+    border-radius:9px;
+    border-left:3px solid #22d3ee;
+    color:#cbd5e1;
+}
+
+.hint{
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    background:#172033;
+    color:#facc15;
+    text-align:center;
+}
+
+.bottom{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+/* FINAL */
+
+.final-title{
+    font-size:45px;
+    color:#4ade80;
+    text-shadow:0 0 25px #22c55e;
+}
+
+.big-score{
+    font-size:28px;
+    margin:20px 0;
+    color:#67e8f9;
+}
+
+.shake{
+    animation:shake .35s;
+}
+
+@keyframes shake{
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-8px)}
+    75%{transform:translateX(8px)}
+}
+
+@media(max-width:500px){
+    .card{
+        padding:18px;
+    }
+
+    .memory-grid{
+        grid-template-columns:repeat(4,52px);
+    }
+
+    .memory-cell{
+        width:52px;
+        height:52px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<section id="menu" class="screen">
+    <div>
+        <div class="logo">YoniRtx72</div>
+        <div class="subtitle">
+            🧩 PUZZLE ESCAPE<br>
+            10 niveles • 1 escape • 1 nivel ULTRA EXTREMO
+        </div>
+
+        <button class="start-btn" onclick="startGame()">
+            ▶ INICIAR JUEGO
+        </button>
+
+        <div class="info">
+            ¿Tienes lo necesario para llegar al nivel 10?
+        </div>
+    </div>
+</section>
+
+<!-- JUEGO -->
+
+<section id="game" class="hidden">
+
+    <div class="topbar">
+        <div class="player">👤 YoniRtx72</div>
+
+        <div class="stats">
+            <div class="stat">❤️ <span id="lives">3</span></div>
+            <div class="stat">⭐ <span id="score">0</span></div>
+            <div class="stat">⏱️ <span id="timer">00:00</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="level-title">
+            NIVEL <span id="levelNumber">1</span> / 10
+        </div>
+
+        <div class="progress">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <h2 id="title"></h2>
+
+        <p id="description" class="description"></p>
+
+        <div id="puzzle" class="puzzle"></div>
+
+        <div id="message" class="message"></div>
+
+        <div class="bottom">
+            <button class="action" onclick="showHint()">💡 PISTA</button>
+        </div>
+
+        <div id="hint" class="hint hidden"></div>
+
+    </div>
+</section>
+
+<!-- FINAL -->
+
+<section id="final" class="screen hidden">
+    <div class="center">
+        <div class="final-title">🎉 ESCAPASTE</div>
+
+        <p style="margin-top:15px;color:#aab4cc">
+            YoniRtx72 ha superado los 10 niveles.
+        </p>
+
+        <div class="big-score">
+            Puntuación: <span id="finalScore">0</span>
+        </div>
+
+        <div>
+            Tiempo: <span id="finalTime">00:00</span>
+        </div>
+
+        <br>
+
+        <button class="start-btn" onclick="location.reload()">
+            🔄 JUGAR DE NUEVO
+        </button>
+    </div>
+</section>
+
+<script>
+
+let level = 1;
+let lives = 3;
+let score = 0;
